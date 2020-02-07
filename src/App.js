@@ -1,8 +1,7 @@
+import { Link, Router } from '@reach/router';
 import React, { useState } from 'react';
-import { render } from 'react-dom';
-import { Router, Link } from '@reach/router';
-import SearchParams from './SearchParams';
 import Details from './Details';
+import SearchParams from './SearchParams';
 import ThemeContext from './ThemeContext';
 
 const App = () => {
@@ -24,4 +23,4 @@ const App = () => {
   );
 };
 
-render(<App />, document.getElementById('root'));
+export default App;
