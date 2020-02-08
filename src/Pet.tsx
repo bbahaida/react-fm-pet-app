@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Link } from '@reach/router';
+import { Photo } from '@frontendmasters/pet';
 
-const Pet = ({ name, animal, breed, media, location, id }) => {
+interface IProps {
+  name: string;
+  animal: string;
+  breed: string;
+  media: Photo[];
+  location: string;
+  id: number;
+}
+
+const Pet: FunctionComponent<IProps> = ({
+  name,
+  animal,
+  breed,
+  media,
+  location,
+  id
+}) => {
   const hero = media.length ? media[0].small : 'http://placecorgi.com/300/300';
   return (
     <Link to={`/details/${id}`} className="pet">

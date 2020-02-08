@@ -1,21 +1,37 @@
 import React from 'react';
-export default class Carousel extends React.Component {
-  state = {
+import { Photo } from '@frontendmasters/pet';
+
+interface IProps {
+  media: Photo[];
+}
+interface IState {
+  photos: string[];
+  active: number;
+}
+
+export default class Carousel extends React.Component<IProps, IState> {
+  public state = {
     photos: [],
     active: 0
   };
 
-  static getDerivedStateFromProps({ media }) {
+  static getDerivedStateFromProps({ media }: IProps) {
     const photos = media.length
       ? media.map(({ large }) => large)
       : ['http/placecorgi.com/600/600'];
     return { photos };
   }
 
-  handleIndexClick = event => {
-    this.setState({
-      active: +event.target.dataset.index
-    });
+  handleIndexClick = (event: React.MouseEvent<HTMLElement>) => {
+    if (!(event.target instanceof HTMLElement)) {
+      return;
+    }
+
+    if (event.target.dataset.index) {
+      this.setState({
+        active: +event.target.dataset.index
+      });
+    }
   };
 
   render() {
